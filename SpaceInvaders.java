@@ -44,7 +44,7 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
         invaders = new ArrayList<>();
 
         score = 0;
-        highscore = 0;
+        highscore = Database.getHighScore();
         level = 1;
         invaderSpeed = 2; // Initial speed
         gameOver = false;
@@ -68,6 +68,7 @@ public class SpaceInvaders extends JPanel implements ActionListener, KeyListener
     @Override
     public void actionPerformed(ActionEvent e) {
         if (gameOver) {
+            Database.saveScore(score);
             soundPlayer.stop();
             return;
         }
